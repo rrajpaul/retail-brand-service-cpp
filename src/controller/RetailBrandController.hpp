@@ -82,8 +82,8 @@ public:
     return createDtoResponse(Status::CODE_200, m_database->createStyle(styleDto));
   }
   
-  ADD_CORS(putStyle)
-  ENDPOINT_INFO(putStyle) {
+  ADD_CORS(updateStyle)
+  ENDPOINT_INFO(updateStyle) {
     // general
     info->summary = "Update Style by StyleId";
     info->addConsumes<StyleDto::ObjectWrapper>("application/json");
@@ -92,7 +92,7 @@ public:
     // params specific
     info->pathParams["styleId"].description = "Style Identifier";
   }
-  ENDPOINT("PUT", "demo/api/styles/{styleId}", putStyle,   \
+  ENDPOINT("PUT", "demo/api/styles/{styleId}", updateStyle,
            PATH(Int32, styleId),        
            BODY_DTO(StyleDto::ObjectWrapper, styleDto)) {
            styleDto->StyleId = styleId;
@@ -124,13 +124,13 @@ public:
     // params specific
     info->pathParams["styleId"].description = "Style Identifier";
   }
-  ENDPOINT("GET", "demo/api/styles/{styleId}/sku", getSkuByStyleId,
+  ENDPOINT("GET", "demo/api/styles/{styleId}/skus", getSkuByStyleId,
            PATH(Int32, styleId)) {
     auto sku = m_database->getSkuByStyleId(styleId);
     OATPP_ASSERT_HTTP(sku, Status::CODE_404, "Skus for Style not found");
     return createDtoResponse(Status::CODE_200, sku);
   }
-  
+
   ADD_CORS(getStyles)
   ENDPOINT_INFO(getStyles) {
     info->summary = "get all stored styles";
@@ -152,6 +152,75 @@ public:
   ENDPOINT("DELETE", "demo/api/styles/{styleId}", deleteStyle,
            PATH(Int32, styleId)) {
     bool success = m_database->deleteStyle(styleId);
+    OATPP_ASSERT_HTTP(success, Status::CODE_417, "Style not deleted. Perhaps no such Style in the Database");
+    return createResponse(Status::CODE_200, "Style successfully deleted");
+  }
+
+  ADD_CORS(deleteSkuByStyleId)
+  ENDPOINT_INFO(deleteSkuByStyleId) {
+    // general
+    info->summary = "Delete Skus by styleId";
+    info->addResponse<String>(Status::CODE_200, "text/plain");
+    info->addResponse<String>(Status::CODE_404, "text/plain");
+    // params specific
+    info->pathParams["styleId"].description = "Style Identifier";
+  }
+  ENDPOINT("DELETE", "demo/api/styles/{styleId}/skus", deleteSkuByStyleId,
+           PATH(Int32, styleId)) {
+    bool success = m_database->deleteSkuByStyleId(styleId);
+    OATPP_ASSERT_HTTP(success, Status::CODE_417, "Skus not deleted. Perhaps no such skus in the Database");
+    return createResponse(Status::CODE_200, "Skus successfully deleted");
+  }
+  
+  ADD_CORS(createSku)
+  ENDPOINT_INFO(createSku) {
+    info->summary = "Create new Style";
+    info->addConsumes<SkuDto::ObjectWrapper>("application/json");
+    info->addResponse<SkuDto::ObjectWrapper>(Status::CODE_200, "application/json");
+  }
+  ENDPOINT("POST", "demo/api/skus", createSku,
+           BODY_DTO(SkuDto::ObjectWrapper, skuDto)) {
+    return createDtoResponse(Status::CODE_200, m_database->createSku(skuDto));
+  }
+  
+  ADD_CORS(putSku)
+  ENDPOINT_INFO(putSku) {
+    // general
+    info->summary = "Update Sku by SkuNumber";
+    info->addConsumes<SkuDto::ObjectWrapper>("application/json");
+    info->addResponse<SkuDto::ObjectWrapper>(Status::CODE_200, "application/json");
+    info->addResponse<String>(Status::CODE_404, "text/plain");
+    // params specific
+    info->pathParams["SkuNumber"].description = "Sku Identifier";
+  }
+  ENDPOINT("PUT", "demo/api/skus/{skuNumber}", putSku,
+           PATH(Int32, skuNumber),        
+           BODY_DTO(SkuDto::ObjectWrapper, skuDto)) {
+           skuDto->SkuNumber = skuNumber;
+    return createDtoResponse(Status::CODE_200, m_database->updateSku(skuDto));
+  }
+
+  ADD_CORS(getSkus)
+  ENDPOINT_INFO(getSkus) {
+    info->summary = "get all stored skus";
+    info->addResponse<oatpp::data::mapping::type::List<SkuDto::ObjectWrapper>::ObjectWrapper>(Status::CODE_200, "application/json");
+  }
+  ENDPOINT("GET", "demo/api/skus", getSkus) {
+    return createDtoResponse(Status::CODE_200, m_database->getSkus());
+  }
+
+  ADD_CORS(deleteSku)
+  ENDPOINT_INFO(deleteSku) {
+    // general
+    info->summary = "Delete Sku by styleId";
+    info->addResponse<String>(Status::CODE_200, "text/plain");
+    info->addResponse<String>(Status::CODE_404, "text/plain");
+    // params specific
+    info->pathParams["skuNumber"].description = "Sku Identifier";
+  }
+  ENDPOINT("DELETE", "demo/api/skus/{skuNumber}", deleteSku,
+           PATH(Int32, skuNumber)) {
+    bool success = m_database->deleteSku(skuNumber);
     OATPP_ASSERT_HTTP(success, Status::CODE_417, "Style not deleted. Perhaps no such Style in the Database");
     return createResponse(Status::CODE_200, "Style successfully deleted");
   }

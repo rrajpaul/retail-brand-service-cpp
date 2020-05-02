@@ -4,7 +4,7 @@
 
 #include "MyControllerTest.hpp"
 
-#include "controller/StyleController.hpp"
+#include "controller/RetailBrandController.hpp"
 
 #include "app/MyApiTestClient.hpp"
 #include "app/TestComponent.hpp"

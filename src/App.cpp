@@ -6,7 +6,7 @@
 //  Copyright © 2018 oatpp. All rights reserved.
 //
 
-#include "controller/StyleController.hpp"
+#include "controller/RetailBrandController.hpp"
 #include "AppComponent.hpp"
 
 #include "oatpp-swagger/Controller.hpp"

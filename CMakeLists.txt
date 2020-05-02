@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-set(project_name retail-brand-service) ## rename your project here
+set(project_name retail-brand-service-cpp) ## rename your project here
 
 project(${project_name})
 
@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(${project_name}-lib
         src/AppComponent.hpp
-        src/controller/StyleController.hpp
+        src/controller/RetailBrandController.hpp
         src/db/Database.hpp
         src/db/Database.cpp
         src/dto/DTOs.hpp
