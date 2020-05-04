@@ -135,9 +135,21 @@ public:
   ENDPOINT_INFO(getStyles) {
     info->summary = "get all stored styles";
     info->addResponse<oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper>(Status::CODE_200, "application/json");
+    info->pathParams["pageNumber"].description = "Page number";
+    info->pathParams["perPage"].description = "Per Page";
   }
-  ENDPOINT("GET", "demo/api/styles", getStyles) {
-    return createDtoResponse(Status::CODE_200, m_database->getStyles());
+  ENDPOINT("GET", "demo/api/styles/{pageNumber}/{perPage}", getStyles,
+    PATH(Int32, pageNumber), PATH(Int32, perPage)) {
+    return createDtoResponse(Status::CODE_200, m_database->getStyles(pageNumber, perPage));
+  }
+
+  ADD_CORS(getTotalStylesCount)
+  ENDPOINT_INFO(getTotalStylesCount) {
+    info->summary = "get the count of styles";
+    info->addResponse<oatpp::data::mapping::type::Int32>(Status::CODE_200, "application/json");
+  }
+  ENDPOINT("GET", "demo/api/styles_count", getTotalStylesCount) {
+    return createDtoResponse(Status::CODE_200, m_database->getTotalStylesCount());
   }
 
   ADD_CORS(deleteStyle)

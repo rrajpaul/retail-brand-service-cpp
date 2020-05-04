@@ -62,7 +62,8 @@ public:
 	StyleDto::ObjectWrapper updateStyle(const StyleDto::ObjectWrapper& style);
 	StyleDto::ObjectWrapper getStyleById(v_int32 id);
     oatpp::data::mapping::type::List<SkuDto::ObjectWrapper>::ObjectWrapper getSkuByStyleId(v_int32 id);
-	oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper getStyles();
+	oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper getStyles(v_int32 pageNumber, v_int32 nPerPage);
+    oatpp::data::mapping::type::Int32 getTotalStylesCount();
 	bool deleteStyle(v_int32 id);
     bool deleteSkuByStyleId(v_int32 id);
 

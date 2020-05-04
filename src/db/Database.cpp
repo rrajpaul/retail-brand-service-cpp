@@ -88,9 +88,9 @@ oatpp::data::mapping::type::List<SkuDto::ObjectWrapper>::ObjectWrapper Database:
     return listDocs;
 }
 
-oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper Database::getStyles(){
+oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper Database::getStyles(v_int32 pageNumber, v_int32 nPerPage){
     mongocxx::options::find opts;
-    opts.sort(make_document(kvp("StyleId", 1), kvp("Manufacturer", 1), kvp("Brand", 1)));
+    opts.skip( pageNumber > 0 ? ( ( pageNumber - 1 ) * nPerPage ) : 0 ).limit( nPerPage ).sort(make_document(kvp("StyleId", 1), kvp("Manufacturer", 1), kvp("Brand", 1)));
     auto cursor = m_coll_style.find({}, opts);
     auto listDocs = oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::createShared();
 
@@ -99,6 +99,17 @@ oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::ObjectWrapper Databas
     }
 
     return listDocs;
+}
+
+oatpp::data::mapping::type::Int32 Database::getTotalStylesCount() {  
+    auto cursor = m_coll_style.find({});
+    auto listDocs = oatpp::data::mapping::type::List<StyleDto::ObjectWrapper>::createShared();
+
+    for(auto doc : cursor) {        
+        listDocs->pushBack(m_mongomapper->readFromDocument<StyleDto::ObjectWrapper>(doc));
+    }
+
+    return listDocs->count();
 }
 
 bool Database::deleteStyle(v_int32 id){
