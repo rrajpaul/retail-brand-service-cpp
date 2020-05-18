@@ -44,14 +44,15 @@ script to install required oatpp modules.
 $ mkdir build && cd build
 $ cmake ..
 $ make 
-$ ./example-mongo-exe        # - run application.
+$ ./retail-brand-service-cpp-exe        # - run application.
 ```
 
 #### In Docker
 
 ```
-$ docker build -t example-mongodb .
-$ docker run -p 8000:8000 -t example-mongodb
+$ run script `build-docker-images.sh` in root of project this builds 2 images one for mongodb and the other for the wen app `retail-brand-service-cpp`
+Test the web app in web browser 172.17.0.3:9000 or verify the ip address for `retail_brand_service1` using `docker inspect retail_brand_service1`
+
 ```
 
 ---
