@@ -1,4 +1,4 @@
-# Example-MongoDB [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/example-crud?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=9?branchName=master)
+# retail-brand-service-cpp [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/example-crud?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=9?branchName=master)
 
 Example project how-to create basic MongoDB CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0
 

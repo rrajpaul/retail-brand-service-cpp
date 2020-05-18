@@ -13,19 +13,32 @@
 #include "oatpp-swagger/Resources.hpp"
 #include "oatpp/core/utils/ConversionUtils.hpp"
 #include "oatpp/core/macro/component.hpp"
-
+#include "HostInfo.hpp"
 /**
  *  Swagger ui is served at
  *  http://host:port/swagger/ui
  */
 class SwaggerComponent {
-public:
-  
+private:
+  oatpp::String m_hostAddress;
+private:
+public:  
   /**
    *  General API docs info
    */
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::swagger::DocumentInfo>, swaggerDocumentInfo)([] {
+
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::swagger::DocumentInfo>, swaggerDocumentInfo)([this] {
     
+    HostInfo oHost;
+    
+    oatpp::String hostAddress = oHost.getHostAddress();
+
+    if(hostAddress == "127.0.0.1" || hostAddress == "127.0.1.1") {
+        hostAddress = "localhost";
+    }
+
+    OATPP_LOGD("Server", "swagger host %s...", hostAddress->c_str());
+
     oatpp::swagger::DocumentInfo::Builder builder;
     
     builder
@@ -38,7 +51,8 @@ public:
     .setLicenseName("Apache License, Version 2.0")
     .setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
     
-    .addServer("http://localhost:9000", "server on localhost");
+    //.addServer("this->m_hostAddress", "server on " + this->m_hostAddress);
+    .addServer("http://" + hostAddress + ":9000", "server on " + hostAddress);
     
     return builder.build();
     

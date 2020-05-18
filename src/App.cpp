@@ -8,10 +8,10 @@
 
 #include "controller/RetailBrandController.hpp"
 #include "AppComponent.hpp"
-
 #include "oatpp-swagger/Controller.hpp"
 #include "oatpp/network/server/Server.hpp"
-
+#include "oatpp/core/base/CommandLineArguments.hpp"
+#include "MongoUrl.hpp"
 #include <iostream>
 
 /**
@@ -36,22 +36,35 @@ void run() {
   
   auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
   swaggerController->addEndpointsToRouter(router);
-  
+
   /* create server */
-  
+
   oatpp::network::server::Server server(components.serverConnectionProvider.getObject(),
                                         components.serverConnectionHandler.getObject());
   OATPP_LOGD("Server", "Running on port %s...", components.serverConnectionProvider.getObject()->getProperty("port").toString()->c_str());
-
+  OATPP_LOGD("Server", "Running on host %s...", components.serverConnectionProvider.getObject()->getProperty("host").toString()->c_str());
+  
   server.run();  
 }
 
 /**
  *  main
  */
+
+
 int main(int argc, const char * argv[]) {
 
   oatpp::base::Environment::init();
+
+  bool hasUrl = oatpp::base::CommandLineArguments::Parser::hasArgument(argc, argv, "-e");
+
+  MongoUrl url;
+
+  if( (argc > 1 && hasUrl)  )  {
+      url.setMongUrl(std::string(argv[2]));
+  }
+
+  OATPP_LOGD("Server run", "Mongo URL is %s...", url.getMongUrl().c_str());
 
   run();
   

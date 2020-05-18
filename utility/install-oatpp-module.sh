@@ -1,8 +1,11 @@
 #!/bin/sh
 
+cd /app
+
 rm -rf tmp
 
 mkdir tmp
+
 cd tmp
 
 ##########################################################
@@ -10,19 +13,22 @@ cd tmp
 
 MODULE_NAME="oatpp"
 
-git clone --depth=1 https://github.com/oatpp/$MODULE_NAME
+git clone "https://github.com/rrajpaul/$MODULE_NAME.git"
 
 cd $MODULE_NAME
+
 mkdir build
+
 cd build
 
-cmake ..
-make install
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local ..
 
-cd ../../
+make 
+
+make install
 
 ##########################################################
 
-cd ../
+cd ../../..
 
 rm -rf tmp

@@ -1,0 +1,56 @@
+StyleId,Manufacturer,Brand,Category,Type,Description
+100,Breezin Inc,Cazual Ting,Men,Top,Athletic T-Shirt
+105,Breezin Inc,Cazual Ting,Men,Top,Long Sleeve T-Shirt
+110,Breezin Inc,Cazual Ting,Men,Top,Athletic Jogging Sweater
+115,Breezin Inc,Cazual Ting,Men,Top,Tank top
+120,Breezin Inc,Cazual Warzs,Men,Footwear,Cross Trainer
+125,Breezin Inc,Cazual Warzs,Men,Footwear,Running Shoes
+130,Breezin Inc,Outdoor Stylin,Men,Footwear,Hiking Shoes
+135,Breezin Inc,Outdoor Stylin,Men,Footwear,Basketball Shoes
+140,Breezin Inc,Cazual Warzs,Men,Bottom,Workout Shorts
+145,Breezin Inc,Cazual Warzs,Men,Bottom,Jogging Pants
+150,Breezin Inc,Cazual Warzs,Men,Bottom,Compression Pants
+155,HyperZ Sport,HyperZ Sport,Women,Top,Athletic T-Shirt
+160,HyperZ Sport,HyperZ Sport,Women,Top,Long Sleeve T-Shirt
+165,HyperZ Sport,HyperZ Sport,Women,Top,Athletic Jogging Sweater
+170,HyperZ Sport,HyperZ Sport,Women,Footwear,Cross Trainer
+175,HyperZ Sport,HyperZ Sport,Women,Footwear,Running Shoes
+180,HyperZ Sport,HyperZ Sport,Women,Footwear,Hiking Shoes
+185,HyperZ Sport,Hot Pantz,Women,Bottom,Workout Shorts
+190,HyperZ Sport,Hot Pantz,Women,Bottom,Jogging Pants
+195,HyperZ Sport,Hot Pantz,Women,Bottom,Compression Pants
+200,HyperZ Sport,Hot Teens,Women,Bottom,Tennis Shorts
+205,HyperZ Sport,Hot Teens,Women,Bottom,Tennis Skirts
+210,Islandz Corp,Flashi Sport,Boys,Bottom,Jogging Pants
+215,Islandz Corp,Flashi Sport,Boys,Bottom,Compression Pants
+220,Islandz Corp,Flashi Sport,Girls,Top,Athletic T-Shirt
+225,Islandz Corp,Flashi Sport,Girls,Top,Long Sleeve T-Shirt
+230,Islandz Corp,Flashi Sport,Girls,Top,Athletic Jogging Sweater
+235,Islandz Corp,Flashi Sport,Girls,Footwear,Cross Trainer
+240,Islandz Corp,Flashi Sport,Girls,Footwear,Running Shoes
+245,Islandz Corp,Flashi Sport,Girls,Footwear,Hiking Shoes
+250,Islandz Corp,Flashi Sport,Girls,Bottom,Workout Shorts
+255,Islandz Corp,Flashi Sport,Girls,Bottom,Jogging Pants
+260,Islandz Corp,Flashi Sport,Girls,Bottom,Compression Pants
+265,Islandz Corp,Flashi Sport,Girls,Bottom,Tennis Shorts
+270,Islandz Corp,Flashi Sport,Girls,Bottom,Tennis Skirts
+275,Nykee Inc,Kull Sportz,Boys,Top,Athletic T-Shirt
+280,Nykee Inc,Kull Sportz,Boys,Top,Long Sleeve T-Shirt
+285,Nykee Inc,Kull Sportz,Boys,Top,Athletic Jogging Sweater
+290,Nykee Inc,Kull Sportz,Boys,Footwear,Cross Trainer
+295,Nykee Inc,Kull Sportz,Boys,Footwear,Running Shoes
+300,Nykee Inc,Kull Sportz,Boys,Footwear,Hiking Shoes
+305,Nykee Inc,Kull Sportz,Boys,Footwear,Basketball Shoes
+310,Nykee Inc,Kull Sportz,Boys,Bottom,Workout Shorts
+315,Unda Armaa,Unda Armaa  Sport,Men,Footwear,Casual Shoes
+320,Unda Armaa,Unda Armaa  Sport,Men,Footwear,Running Shoes
+325,Unda Armaa,Unda Armaa  Sport,Men,Footwear,Cross Trainer
+330,Unda Armaa,Unda Armaa  Sport,Men,Tops,Outdoor Jacket
+335,Unda Armaa,Unda Armaa  Sport,Men,Tops,T-Shirts
+340,Unda Armaa,Unda Armaa  Sport,Men,Tops,Compression T-Shirts
+345,Unda Armaa,Unda Armaa  Sport,Women,Tops,Outdoor Jacket
+350,Unda Armaa,Unda Armaa  Sport,Women,Footwear,Running Shoes
+355,Unda Armaa,Unda Armaa  Sport,Women,Footwear,Cross Trainer
+360,Unda Armaa,Unda Armaa  Sport,Women,Tops,Outdoor Jacket
+365,Unda Armaa,Unda Armaa  Sport,Women,Footwear,Running Shoes
+370,Unda Armaa,Unda Armaa  Sport,Women,Footwear,Cross Trainer

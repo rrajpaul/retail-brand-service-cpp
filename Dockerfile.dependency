@@ -1,0 +1,31 @@
+FROM alpine:latest AS web-app-dependency
+
+MAINTAINER Ryan Rajpaul <rrajpaul@gmail.com>
+
+RUN apk update
+
+RUN apk add --virtual build-dependencies build-base g++ gcc wget git cmake lua perl pkgconfig boost-dev
+
+RUN mkdir /app
+
+WORKDIR /app/
+
+ADD utility /app/utility
+
+WORKDIR /app/utility
+
+RUN ./install-mongo-c-driver-module.sh
+
+RUN ./install-mongo-cxx-driver-module.sh
+
+RUN ./install-oatpp-module.sh
+
+RUN ./install-oatpp-swagger-module.sh
+
+RUN ln -s /usr/local/lib64/* /usr/local/lib
+
+RUN ./install-oatpp-mongocxxmapper.sh
+
+WORKDIR /app
+
+RUN rm -rf utility

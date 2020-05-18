@@ -16,7 +16,7 @@
 #include "oatpp/parser/json/mapping/Serializer.hpp"
 #include "oatpp/parser/json/mapping/Deserializer.hpp"
 #include "oatpp/core/macro/component.hpp"
-
+#include "HostInfo.hpp"
 
 /**
  *  Class which creates and holds Application components and registers components in oatpp::base::Environment
@@ -29,12 +29,14 @@ public:
    *  Swagger component
    */
   SwaggerComponent swaggerComponent;
-  
+
   /**
    *  Create ConnectionProvider component which listens on the port
    */
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(9000);
+    HostInfo oHost;
+    oatpp::String hostAddress = oHost.getHostAddress();
+    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(9000, hostAddress, false);
   }());
   
   /**
@@ -51,6 +53,7 @@ public:
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     return oatpp::web::server::HttpConnectionHandler::createShared(router);
   }());
+  
   
   /**
    *  Create ObjectMapper component to serialize/deserialize DTOs in Contoller's API

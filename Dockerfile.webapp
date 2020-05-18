@@ -1,0 +1,23 @@
+FROM retail-brand-mongo-dependency:1.0
+
+RUN apk add --virtual build-dependencies build-base g++ gcc cmake lua perl pkgconfig boost-dev
+
+WORKDIR /app
+
+ADD src /app/src
+
+ADD test /app/test
+
+ADD CMakeLists.txt /app/CMakeLists.txt
+
+RUN mkdir /app/build
+
+WORKDIR /app/build
+
+RUN cmake -DCMAKE_BUILD_TYPE=Release ..
+
+RUN make
+
+EXPOSE 9000 9000
+
+ENTRYPOINT ["./retail-brand-service-cpp-exe"]
